@@ -1,0 +1,61 @@
+body {
+    background-color: bisque;
+}
+
+.content{
+    position: relative;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* background-color:beige; */
+    margin: auto;
+    
+    padding: 70px;
+    border-radius: 15px;
+    
+    vertical-align: middle;
+
+}
+caption{
+    font-size: xx-large;
+    margin-bottom: 20px;
+}
+.th{
+    background-color: bisque;
+    display:inline-block;
+    width:170px;
+}
+
+.td{
+    /* border-right: 1px solid beige; */
+    width:170px;
+    display:inline-block;
+    vertical-align: top;
+}
+
+.tr:nth-child(odd){
+    background-color: beige;
+} 
+
+.tr:nth-child(even){
+    background-color: bisque;
+}
+.actions{
+    text-align: center;
+    display:inline-block;
+    width:170px;
+    
+}
+
+.users{
+    display:inline-block;
+}
+.actionCreer{
+    display:inline-block;
+    vertical-align: top;
+    padding-top: 15px;
+}
+form{
+	display:inline-block;
+}

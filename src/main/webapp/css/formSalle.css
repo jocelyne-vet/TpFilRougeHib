@@ -1,0 +1,46 @@
+body{
+    background-color: bisque;
+}
+
+.content{
+    position: relative;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* background-color:beige; */
+    margin: auto;
+    
+    padding: 70px;
+    border-radius: 15px;
+    
+    vertical-align: middle;
+
+}
+.infoCinema {
+    display: inline-block;
+}
+.formSalle{
+    display:inline-block;
+    background-color: beige;
+    vertical-align: top;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 15px;
+}
+.attrSalle{
+    text-align: right;
+    margin-bottom: 10px;
+}
+.btn{
+    font-size: small;
+    /* border:none; */
+}
+.btn:hover {
+    font-size: 120%; 
+    background-color: #c4e4ff;
+    cursor:pointer;
+}
+.message{
+	color:red;
+}

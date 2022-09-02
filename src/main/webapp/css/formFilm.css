@@ -1,0 +1,60 @@
+body{
+    background-color: bisque;
+}
+
+.content{
+    border: solid 1px;
+    border-radius: 15px;
+    margin: 20px;
+    padding: 10px;
+    background-color:beige ;
+    vertical-align: top;
+
+}
+
+#synopsis{
+    vertical-align: top;
+}
+
+textarea{
+    width:250px;
+}
+.inputFilm{
+    width:250px;
+}
+.infoFilm{
+    width:400px;
+    text-align: right;
+    
+    display:inline-block;
+}
+
+.infos{
+    
+    margin-bottom: 10px;
+}
+
+.seances{
+    /* margin-left: 75px; */
+    width:400px;
+    text-align: right;
+    display:inline-block;
+    vertical-align: top;
+}
+
+.seance{
+    margin-bottom: 10px;
+}
+
+.film{
+    display: inline-block;
+}
+.enreg{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 100px;
+}
+
+h2{
+	margin-top: 0px;
+}

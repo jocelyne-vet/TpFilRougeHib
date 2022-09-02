@@ -1,0 +1,75 @@
+body{
+    background-color: bisque;
+}
+.content {
+	border: solid 1px;
+	border-radius: 15px;
+	margin: 20px;
+	padding: 10px;
+	background-color: beige;
+	vertical-align: top;
+}
+
+.contentInfo {
+	font-size: large;
+	color: #8996a0;
+}
+
+.info {
+	display: inline-block;
+	height: 200px;
+	width: 50%;
+	text-align: justify;
+	margin: 5px;
+	vertical-align: top;
+}
+
+/* .btnSeance{
+    font-size: large;
+    border:none;
+    border-radius:10px;
+    background-color: #5a7f9c;
+    width:50px;
+} */
+.btnSeance {
+	background-color: #5a7f9c;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: large;
+	margin: 10px;
+	border-radius:10px;
+}
+
+.btnSeance:hover {
+	font-size: 120%;
+	background-color: #c4e4ff;
+	cursor: pointer;
+}
+
+.blocseance {
+	display: inline-block;
+	width: 100px;
+	text-align: center;
+	margin: 10px;
+}
+
+.blocseancebis {
+	display: inline-block;
+	width: 100px;
+	text-align: center;
+	margin: 10px;
+	background-color: #5a7f9c;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	/* display: inline-block; */
+	font-size: large;
+	/* margin: 10px; */
+	border-radius:10px;
+}

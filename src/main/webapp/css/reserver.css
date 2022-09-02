@@ -1,0 +1,49 @@
+body{
+    background-color: bisque;
+}
+.content {
+   
+    margin: 20px;
+    padding: 10px;
+    background-color: bisque;
+    
+}
+figure{
+    display:inline-block;
+}
+.info{
+    display:inline-block;
+    vertical-align: top;
+}
+
+.blocseance{
+    border: 1px solid gray;
+    border-radius: 10%;
+    width:100px;
+    text-align: center;
+    background-color: #5a7f9c;
+}
+
+.film{
+    display: inline-block;
+    /* border-right: 1px solid black; */
+    padding-right: 10px;
+}
+.reservation{
+    display: inline-block;
+    margin-top: 10px;
+    text-align: right;
+    vertical-align: top;
+    margin-left: 10px;
+    background-color:beige;
+    padding-right: 15px;
+    width:500px;
+    height:300px;
+    border-radius:10%;
+}
+.res{
+    margin-bottom: 10px;
+}
+.message{
+	color : red;
+}

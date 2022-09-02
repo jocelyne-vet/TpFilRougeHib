@@ -1,0 +1,39 @@
+body{
+    background-color: bisque;
+}
+h1{
+    display: inline-block;
+}
+
+#ajouterForm{
+    display: inline-block;
+    padding-top: 32px;
+    vertical-align: top;
+}
+.espace{
+    display: inline-block;
+    width: 560px;
+}
+
+.content{
+    position: relative;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* background-color:beige; */
+    margin: auto;
+    
+    padding: 70px;
+    border-radius: 15px;
+    
+    vertical-align: middle;
+
+}
+
+
+.film{
+    display: inline-block;
+    background-color: beige;
+    padding: 20px;
+}

@@ -1,0 +1,95 @@
+
+body {
+    background-color: bisque;
+}
+
+
+
+.recherche {
+    border: solid 1px;
+    border-radius: 15px;
+    margin: 20px;
+    padding: 10px;
+}
+
+input[type=search] {
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('../img/searchicon.png');
+  background-size: 2.2%;
+  background-position:8px 8px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+}
+
+
+
+#contenu{
+    margin: 20px;
+    
+}
+
+.cinemaContent{
+	/* border: solid 1px black; */
+    background-color:beige ;
+   
+    border-radius: 15px;
+    padding:10px;
+    
+}
+
+/* #contenu div:nth-child(odd){
+	background-color:blanchedalmond;
+}
+
+#contenu div:nth-child(even){
+	background-color:beige;
+} */
+
+.cinemaContent:nth-child(odd){
+	background-color:blanchedalmond;
+}
+
+.cinemaContent:nth-child(even){
+	background-color:beige;
+}
+
+.cinemaContent span{
+    font-weight:bold ;
+    font-size: large;
+    
+}
+
+.information{
+	display:inline-block;
+	vertical-align: top;
+}
+#adresse span{
+    font-size: large;
+    font-weight: bold;
+    color:grey;
+    display:block;
+}
+/* .film{
+    display: inline-block;
+    width:30%;
+    border-radius: 3%;
+    border:solid 1px;
+    margin: 20px;
+    padding: 10px;
+    background-color: azure;
+} */
+.btnCinema{
+    font-size: large;
+    border:none;
+}
+.btnCinema:hover {
+    font-size: 120%;
+    background-color: #c4e4ff;
+    cursor:pointer;
+}
+

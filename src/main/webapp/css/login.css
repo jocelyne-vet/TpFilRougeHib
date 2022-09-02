@@ -1,0 +1,44 @@
+body {
+    background-color: bisque;
+}
+#message{
+	 margin: 20px;
+    padding: 10px;
+    color:red;
+}
+.content{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color:beige;
+    margin: auto;
+    width:500px;
+    height:200px;
+    padding: 70px;
+    border-radius: 15px;
+}
+
+
+#right{
+    right:0;
+}
+
+.btn{
+    width:200px;
+    height:auto;
+}
+.btnConnexion{
+    border:none;
+    text-decoration: none;
+    background-color: #5a7f9c;
+}
+.btnConnexion:hover{
+    font-size: 120%;
+	background-color: #c4e4ff;
+	cursor: pointer
+}
+.content div{
+    margin-bottom: 15px;
+}

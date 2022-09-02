@@ -1,0 +1,14 @@
+@charset "ISO-8859-1";
+
+
+.message {
+    color:blue;
+    margin: 20px;
+    padding: 10px;
+}
+
+.messageErreur {
+    color:red;
+    margin: 20px;
+    padding: 10px;
+}
