@@ -11,10 +11,11 @@ Les cinémas Rilletthes sont une grosse chaîne de cinéma à l’international.
 disposer d’un nouveau site web pour permettre de consulter ses différents cinémas, les salles, les
 séances…
 
-## Utilisation de
-Java, JEE, Hibernate, HTML, javascript, CSS, Maven, MySql
+## Les différentes phases du projet :
 
-* conception de la base de données et création mysql
-* Java et réalisation de tests unitaires
-* Mise en place des fonctionnalités en JEE 
-* Mise en place d'hibernate
+* Phase 1 : Conception de la base de données et création mysql
+* Phase 2 : Mise en place des bo Java 
+* Phase 3 : Mise en place des fonctionnalités en JEE et utilisation du pattern MVC 
+* Phase 4 : Mise en place de MAVEN, utilisation d'hibernate 
+* Phase 5 : Mise en place d'un WebService pour consulter, ajouter, modifier un film (ceci est réalisé dans le projet :TpFilRougeWebSer situé :)
+* Phase 6 : Mise en place de Spring
