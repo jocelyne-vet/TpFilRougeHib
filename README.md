@@ -17,5 +17,5 @@ séances…
 * Phase 2 : Mise en place des bo Java 
 * Phase 3 : Mise en place des fonctionnalités en JEE et utilisation du pattern MVC 
 * Phase 4 : Mise en place de MAVEN, utilisation d'hibernate 
-* Phase 5 : Mise en place d'un WebService pour consulter, ajouter, modifier un film (ceci est réalisé dans le projet :TpFilRougeWebSer situé :)
+* Phase 5 : Mise en place d'un WebService pour consulter, ajouter, modifier un film (ceci est réalisé dans le projet :TpFilRougeWebSer situé :https://github.com/jocelyne-vet/TpFilRougeWebServ)
 * Phase 6 : Mise en place de Spring
