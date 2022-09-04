@@ -53,27 +53,5 @@ public class PersonneBLL {
 		critere.put("varGerantId", id);
 		return dao.findWithParam("findGerants", critere);		
 	}
-	//reservations
 
-//	public void majReservation(int idSeance, int idClient, int nbPlaces) {
-//
-//		if (daoG.existReservationByIdSeanceIdClient(idSeance, idClient)) {
-//			daoG.updateReservations(idSeance, idClient, nbPlaces);
-//		} else {
-//			daoG.insertReservation(idSeance, idClient, nbPlaces);
-//		}
-//	}
-//
-//	public Map<Client, Integer> selectClientsInscrits(int idSeance) {
-//		return daoG.selectClientsInscrits(idSeance);
-//	}
-//
-	public void selectMesReservations(Client client) {
-		// TODO Auto-generated method stub
-		// dao.selectMesReservations(client);
-	}
-	
-//	public Map<Seance, Integer> selectHistoriqueReservation(int idClient){
-//		return daoG.selectHistoriqueReservation(idClient);
-//	}
 }

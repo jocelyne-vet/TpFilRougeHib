@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import bll.FilmBLL;
 import bll.SalleBLL;
 import bll.SeanceBLL;
+import bo.cinemas.Salle;
 
 /**
  * Servlet implementation class SupprimerSalleServlet
@@ -53,9 +54,12 @@ public class SupprimerSalleServlet extends HttpServlet {
 		String pId =  request.getParameter("idSalle");
 		String pNumero = request.getParameter("numero");
 		
-		bllFilm.deleteFilmBySalle(Integer.valueOf(pId));
-		bllSeance.deleteSeancesBySalle(Integer.valueOf(pId));
-		bll.deleteById(Integer.valueOf(pId));
+//		bllFilm.deleteFilmBySalle(Integer.valueOf(pId));
+//		bllSeance.deleteSeancesBySalle(Integer.valueOf(pId));
+//		bll.deleteById(Integer.valueOf(pId));
+		
+		Salle maSalle = bll.selectById(Integer.valueOf(pId));
+		bll.delete(maSalle);
 		
 		String message = "La salle numero "+pNumero+ " a été supprimée";
 		

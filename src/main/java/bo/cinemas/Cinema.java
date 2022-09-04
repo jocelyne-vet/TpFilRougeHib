@@ -51,8 +51,8 @@ public class Cinema {
 
 	private String affiche;
 	
-	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.REMOVE)
-	@JoinColumn(name="id_cinema")
+	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.REMOVE, mappedBy = "cinema")
+	//@JoinColumn(name="id_cinema")
 	@Fetch(value=FetchMode.SUBSELECT)
 	public Set<Salle> salles;
 	

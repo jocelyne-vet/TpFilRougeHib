@@ -19,8 +19,9 @@ import bo.personnes.Client;
 @NamedQueries({
 	
 	@NamedQuery(name = "findAllReservationByClient",
-			query = "select p from Reservation p  where p.client.id =:varClientId")
-	
+			query = "select p from Reservation p  where p.client.id =:varClientId"),
+	@NamedQuery(name = "findAllReservationBySeance",
+	query = "select p from Reservation p  where p.seance.id =:varSeanceId")
 })
 public class Reservation {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)

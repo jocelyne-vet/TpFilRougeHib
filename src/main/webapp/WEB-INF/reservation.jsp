@@ -32,7 +32,7 @@
 				</p>
 				<p>
 					Durée :
-					<c:out value="${seance.film.duree }"></c:out>
+					<c:out value="${seance.film.fDuree }"></c:out>
 				</p>
 				<p>
 					Age minimum :

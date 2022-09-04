@@ -46,7 +46,7 @@ public class Seance implements Comparable<Seance>{
 	private LocalDate date_seance;
 	@Column(name="nb_inscrits")
 	private int nbInscrits;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name="id_film")
 	private Film film;
 	@ManyToOne

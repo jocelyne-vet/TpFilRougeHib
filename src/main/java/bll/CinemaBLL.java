@@ -76,6 +76,11 @@ public class CinemaBLL {
 		return dao.findById(id);
 	}
 	
+	public void delete(Cinema monCinema) {
+		// TODO Auto-generated method stub
+		dao.delete(monCinema);
+	}
+	
 	private void verifierValeurs(Cinema cinema) throws CinemaException {
 		CinemaException exception = new CinemaException();
 		if (cinema.getNom().isBlank()) {
@@ -93,4 +98,6 @@ public class CinemaBLL {
 		}
 		
 	}
+
+	
 }

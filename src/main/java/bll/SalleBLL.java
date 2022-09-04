@@ -74,4 +74,9 @@ public class SalleBLL {
 			throw exception;
 		}
 	}
+
+	public void delete(Salle maSalle) {
+		dao.delete(maSalle);
+		
+	}
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bll.CinemaBLL;
+import bo.cinemas.Cinema;
 
 /**
  * Servlet implementation class SupprimerCinemaServlet
@@ -45,7 +46,9 @@ public class SupprimerCinemaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pIdCinema = request.getParameter("idCinema");
 		String pNomCinema = request.getParameter("nomCinema");
-		bll.delete(Integer.valueOf(pIdCinema));
+//		bll.delete(Integer.valueOf(pIdCinema));
+		Cinema monCinema = bll.selectById(Integer.valueOf(pIdCinema));
+		bll.delete(monCinema);
 		String message = "Vous venez de supprimer le cinéma"+pNomCinema;
 		response.sendRedirect("listeCinemas?message="+message);
 	}
