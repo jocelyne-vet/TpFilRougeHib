@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import bll.PersonneBLL;
 import bo.personnes.Administrateur;
 import bo.personnes.Client;
@@ -22,8 +24,9 @@ import bo.util.Adresse;
  * Servlet implementation class CompteServlet
  */
 @WebServlet("/compte")
-public class CompteServlet extends HttpServlet {
+public class CompteServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private PersonneBLL bll;
 //	private AdresseBLL bllAdresse;
 
@@ -31,7 +34,7 @@ public class CompteServlet extends HttpServlet {
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		bll = new PersonneBLL();
+//		bll = new PersonneBLL();
 //		bllAdresse = new AdresseBLL();
 	}
 
@@ -53,7 +56,7 @@ public class CompteServlet extends HttpServlet {
 //		HttpSession session = request.getSession();
 		
 
-		request.getRequestDispatcher("WEB-INF/compte.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/compte.jsp").forward(request, response);
 	}
 
 	/**
@@ -141,7 +144,7 @@ public class CompteServlet extends HttpServlet {
 		
 		HttpSession session= request.getSession();
 		session.setAttribute("user", personne);
-		request.getRequestDispatcher("WEB-INF/accueil.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 
 }

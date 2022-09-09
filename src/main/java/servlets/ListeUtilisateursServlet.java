@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import bll.PersonneBLL;
 import bo.personnes.Personne;
 
@@ -18,15 +20,16 @@ import bo.personnes.Personne;
  * Servlet implementation class ListeUtilisateursServlet
  */
 @WebServlet("/listeUtilisateurs")
-public class ListeUtilisateursServlet extends HttpServlet {
+public class ListeUtilisateursServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private PersonneBLL bll;
 	
 	@Override
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		bll = new PersonneBLL();
+//		bll = new PersonneBLL();
 	}
        
     /**
@@ -53,7 +56,7 @@ public class ListeUtilisateursServlet extends HttpServlet {
         });
 		request.setAttribute("utilisateurs", utilisateurs);
 		request.setAttribute("message", message);
-		request.getRequestDispatcher("WEB-INF/listeUtilisateurs.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/listeUtilisateurs.jsp").forward(request, response);
 	}
 
 	/**

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import bll.SeanceBLL;
 import bo.cinemas.Film;
 import bo.cinemas.Seance;
@@ -23,15 +25,16 @@ import bo.util.Outils;
  * Servlet implementation class FilmServlet
  */
 @WebServlet("/film")
-public class FilmServlet extends HttpServlet {
+public class FilmServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private SeanceBLL bll;
 	
 	@Override
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-	    bll = new SeanceBLL();	
+//	    bll = new SeanceBLL();	
 	}
        
     /**
@@ -64,7 +67,7 @@ public class FilmServlet extends HttpServlet {
 		request.setAttribute("seances", seances);
 		
 		
-		request.getRequestDispatcher("WEB-INF/film.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/film.jsp").forward(request, response);
 		
 	}
 

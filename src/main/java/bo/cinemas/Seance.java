@@ -8,22 +8,16 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -32,13 +26,13 @@ import bo.util.Reservation;
 
 @Entity
 @Table(name="seances")
-@NamedQueries({
-	
-	@NamedQuery(name = "findSeancesByFilm",
-			query = "select p from Seance p Join p.film f where f.id =:varId"),
-	@NamedQuery(name = "findAllSeancesBySalleByFilm",
-			query = "select p from Salle sa Join sa.seances p Join p.film f where sa.id =:varIdSalle and f.id =:varIdFilm ")
-})
+//@NamedQueries({
+//	
+//	@NamedQuery(name = "findSeancesByFilm",
+//			query = "select p from Seance p Join p.film f where f.id =:varId"),
+//	@NamedQuery(name = "findAllSeancesBySalleByFilm",
+//			query = "select p from Salle sa Join sa.seances p Join p.film f where sa.id =:varIdSalle and f.id =:varIdFilm ")
+//})
 public class Seance implements Comparable<Seance>{
 	@Transient
 	private LocalDateTime heureDebut;

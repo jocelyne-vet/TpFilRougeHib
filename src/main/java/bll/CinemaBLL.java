@@ -1,79 +1,98 @@
 package bll;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import bo.cinemas.Cinema;
+import dal.CinemaDAO;
 
-import dal.GenericDAO;
-import dal.GenericDAOHibernateImpl;
-
-
+@Service
 public class CinemaBLL {
-	
-	private GenericDAO<Cinema> dao; 
+	@Autowired
+	private CinemaDAO dao; 
 
 	
 	public CinemaBLL() {
-		dao = new GenericDAOHibernateImpl<>(Cinema.class);
+		
 	}
 	
 	public Cinema selectByIdCritere(int id, String critere){
-		Map<String, Object> mapCritere = new HashMap<>();
-		mapCritere.put("varNom", "%"+critere+"%");
-		mapCritere.put("varId", id);
-		Cinema cinema = dao.selectQueryWithParam("findFilmsByCinemaByCritere", mapCritere);
+//		Map<String, Object> mapCritere = new HashMap<>();
+//		mapCritere.put("varNom", "%"+critere+"%");
+//		mapCritere.put("varId", id);
+//		Cinema cinema = dao.selectQueryWithParam("findFilmsByCinemaByCritere", mapCritere);
+//		return cinema;
+		
+		System.out.println("*************************************");
+		critere = "%"+critere.toUpperCase()+"%";
+		Cinema cinema =  dao.findFilmsByCinemaByCritere(critere, id);
+		
+//		if(cinemas!=null) {
+//			cinema = cinemas.get(0);
+//		}
 		return cinema;
 	}
 	
 	public List<Cinema> selectCinemasCritere(String critere){
 			
-		Map<String, Object> mapCritere = new HashMap<>();
-		mapCritere.put("varNom", "%"+critere+"%");
-		mapCritere.put("varVille","%"+ critere+"%");
-		List<Cinema> cinemas = dao.findWithParam("findCinemasByCritere", mapCritere);
-		
-		return cinemas;
+//		Map<String, Object> mapCritere = new HashMap<>();
+//		mapCritere.put("varNom", "%"+critere+"%");
+//		mapCritere.put("varVille","%"+ critere+"%");
+//		List<Cinema> cinemas = dao.findWithParam("findCinemasByCritere", mapCritere);
+//		
+//		return cinemas;
+		return dao.findByNomContainingIgnoreCaseOrAdresseVilleContainingIgnoreCase(critere, critere);
 	}
 	
 	public Cinema selectById(int id){
-		return dao.findById(id);
+		return dao.findById(id).get();
 		
 	}
 	
 	public Cinema selectByIdGerant(int idGerant){
-		Map<String, Object> mapCritere = new HashMap<>();
-
-		mapCritere.put("varId",idGerant);
-		Cinema cinema = dao.selectQueryWithParam("findFilmsByCinemaByIdGerant", mapCritere);
-		
+//		Map<String, Object> mapCritere = new HashMap<>();
+//
+//		mapCritere.put("varId",idGerant);
+//		Cinema cinema = dao.selectQueryWithParam("findFilmsByCinemaByIdGerant", mapCritere);
+//		
+//		return cinema;
+		Cinema cinema = null;
+		List<Cinema> cinemas =  dao.findByGerantId(idGerant);
+		if(cinemas!=null) {
+			cinema = cinemas.get(0);
+		}
 		return cinema;
+		
 	}
 	
 	public List<Cinema> selectAll( ){
-		return dao.findAll("findAllCinema");
+		return dao.findAll();
 	}
 	
 	public void insert(Cinema cinema) throws CinemaException {
 		verifierValeurs(cinema);
-		dao.insert(cinema);
+		dao.save(cinema);
 	}
 	
 	
-
+	
 	public void update(Cinema cinema) throws CinemaException {
 		verifierValeurs(cinema);
-		dao.update(cinema);
+		dao.save(cinema);
 	}
 	
 	public void delete(int id) {
-		dao.delete(id);
+		dao.deleteById(id);
+	}
+	
+	public void delete(Cinema cinema) {
+		dao.delete(cinema);
 	}
 	
 	public Cinema selectCinemaById(int id) {
-		return dao.findById(id);
+		return dao.findById(id).get();
 	}
 	
 	private void verifierValeurs(Cinema cinema) throws CinemaException {

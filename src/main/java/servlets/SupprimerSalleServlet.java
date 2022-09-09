@@ -1,11 +1,14 @@
 package servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import bll.FilmBLL;
 import bll.SalleBLL;
@@ -15,10 +18,13 @@ import bll.SeanceBLL;
  * Servlet implementation class SupprimerSalleServlet
  */
 @WebServlet("/supprimerSalle")
-public class SupprimerSalleServlet extends HttpServlet {
+public class SupprimerSalleServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private SalleBLL bll;
+	@Autowired
 	private SeanceBLL bllSeance;
+	@Autowired
 	private FilmBLL bllFilm;
 	
 	
@@ -26,9 +32,9 @@ public class SupprimerSalleServlet extends HttpServlet {
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		bll = new SalleBLL();
-		bllSeance = new SeanceBLL();
-		bllFilm = new FilmBLL();
+//		bll = new SalleBLL();
+//		bllSeance = new SeanceBLL();
+//		bllFilm = new FilmBLL();
 	}
        
     /**
@@ -52,6 +58,8 @@ public class SupprimerSalleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pId =  request.getParameter("idSalle");
 		String pNumero = request.getParameter("numero");
+		
+		
 		
 		bllFilm.deleteFilmBySalle(Integer.valueOf(pId));
 		bllSeance.deleteSeancesBySalle(Integer.valueOf(pId));

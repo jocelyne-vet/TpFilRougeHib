@@ -18,8 +18,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,12 +25,12 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 @Entity
 @Table(name = "salles")
-@NamedQueries({
-	
-	@NamedQuery(name = "existNumero",
-			query = "select sa from Cinema c Join c.salles sa where c.id =:varId and numero =:varNumero")
-	
-})
+//@NamedQueries({
+//	
+//	@NamedQuery(name = "existNumero",
+//			query = "select sa from Cinema c Join c.salles sa where c.id =:varId and numero =:varNumero")
+//	
+//})
 
 public class Salle {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)

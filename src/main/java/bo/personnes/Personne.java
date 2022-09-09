@@ -6,7 +6,6 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,12 +15,9 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import bo.cinemas.Seance;
 import bo.util.Adresse;
 
 @Entity
@@ -29,15 +25,15 @@ import bo.util.Adresse;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "role")
 
-@NamedQueries({
-	
-	@NamedQuery(name = "existPersonne",
-			query = "select p from Personne p where p.email =:varEmail and p.motdePasse =:varMotDePasse"),
-	@NamedQuery(name = "findAll",
-			query = "select p from Personne p "),
-	@NamedQuery(name = "findGerants",
-			query = "select g from Gerant g where g.id not in ( select c.gerant.id from Cinema c) or g.id in (select q.id from Gerant q where q.id =:varGerantId )")
-})
+//@NamedQueries({
+//	
+//	@NamedQuery(name = "existPersonne",
+//			query = "select p from Personne p where p.email =:varEmail and p.motdePasse =:varMotDePasse"),
+//	@NamedQuery(name = "findAll",
+//			query = "select p from Personne p "),
+//	@NamedQuery(name = "findGerants",
+//			query = "select g from Gerant g where g.id not in ( select c.gerant.id from Cinema c) or g.id in (select q.id from Gerant q where q.id =:varGerantId )")
+//})
 
 public abstract class Personne {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)

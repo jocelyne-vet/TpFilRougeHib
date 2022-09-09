@@ -20,9 +20,8 @@
 
 
 <body>
-
-	<%@ include file="fragments/fragmentMenu.jsp"%>
-	<%@ include file="fragments/fragmentMessage.jsp"%>
+	<%@ include file="../fragments/fragmentMenu.jsp"%>
+	<%@ include file="../fragments/fragmentMessage.jsp"%>
 
 	<div class="recherche">
 
@@ -33,7 +32,7 @@
 				placeholder="Rechercher" size="100">
 		</form>
 	</div>
-	</div>
+	
 	<c:if test="${!empty cinemas }">
 		<div id="contenu">
 			<c:forEach items="${cinemas}" var="current">
@@ -49,8 +48,8 @@
 								<span>Adresse : <c:out value="${current.adresse.numero }"></c:out>
 									<c:out value="${current.adresse.typeRue }"></c:out> <c:out
 										value="${current.adresse.nomRue }"></c:out> <c:out
-										value="${current.adresse.cpo }"></c:out> <span> <span><c:out
-												value="${current.adresse.ville }"></c:out></span>
+										value="${current.adresse.cpo }"></c:out>
+								</span> <span><c:out value="${current.adresse.ville }"></c:out></span>
 							</div>
 						</div>
 					</form>

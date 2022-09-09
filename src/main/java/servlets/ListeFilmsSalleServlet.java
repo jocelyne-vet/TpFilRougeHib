@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import bll.SalleBLL;
 import bo.cinemas.Film;
 import bo.cinemas.Salle;
@@ -19,15 +21,16 @@ import bo.cinemas.Salle;
  * Servlet implementation class ListeFilmsSalleServlet
  */
 @WebServlet("/consulterFilmsSalle")
-public class ListeFilmsSalleServlet extends HttpServlet {
+public class ListeFilmsSalleServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private SalleBLL bll;
 	
 	@Override
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		bll = new SalleBLL();
+//		bll = new SalleBLL();
 	}
        
     /**
@@ -52,7 +55,7 @@ public class ListeFilmsSalleServlet extends HttpServlet {
 		request.setAttribute("salle", maSalle);
 		request.setAttribute("films", mesFilms);
 		request.setAttribute("message", message);
-		request.getRequestDispatcher("WEB-INF/listeFilmsSalle.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/listeFilmsSalle.jsp").forward(request, response);
 	}
 
 	/**

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import bll.PersonneBLL;
 import bo.personnes.Administrateur;
 import bo.personnes.Client;
@@ -21,8 +23,9 @@ import bo.util.Adresse;
  * Servlet implementation class FormulaireUtiilisateurServlet
  */
 @WebServlet("/formulaireUtilisateur")
-public class FormulaireUtiilisateurServlet extends HttpServlet {
+public class FormulaireUtiilisateurServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private PersonneBLL bll;
 //	private AdresseBLL bllAdresse;
 
@@ -30,7 +33,7 @@ public class FormulaireUtiilisateurServlet extends HttpServlet {
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		bll = new PersonneBLL();
+//		bll = new PersonneBLL();
 //		bllAdresse = new AdresseBLL();
 	}
 
@@ -54,7 +57,7 @@ public class FormulaireUtiilisateurServlet extends HttpServlet {
 			 maPersonne = bll.selectById(Integer.valueOf(pUtilisateurId));
 		}
 		request.setAttribute("utilisateur", maPersonne);
-		request.getRequestDispatcher("WEB-INF/formUtilisateur.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/formUtilisateur.jsp").forward(request, response);
 	}
 
 	/**

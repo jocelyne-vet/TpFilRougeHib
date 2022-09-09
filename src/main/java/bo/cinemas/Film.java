@@ -3,7 +3,6 @@
 
 
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -24,7 +23,7 @@ public class Film {
 	@Column(name="titre")
 	private String nom;
 	
-	@OneToMany( fetch=FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "film",orphanRemoval = true)
+	@OneToMany( fetch=FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "film")
 //	private List<Seance> seances;
 	private Set<Seance> seances;
 

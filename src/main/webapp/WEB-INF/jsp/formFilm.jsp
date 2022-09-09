@@ -12,7 +12,7 @@
 <script src="js/formFilm.js"></script>
 </head>
 <body>
-	<%@ include file="fragments/fragmentMenu.jsp"%>
+	<%@ include file="../fragments/fragmentMenu.jsp"%>
 	<div class="content">
 		<h1>Formulaire du film</h1>
 		<p><c:out value = "${messageErreur}"></c:out></p>

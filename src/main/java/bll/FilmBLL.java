@@ -1,39 +1,40 @@
 package bll;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import bo.cinemas.Film;
-
-import dal.GenericDAO;
-import dal.GenericDAOHibernateImpl;
-
+import dal.FilmDAO;
+@Service
 public class FilmBLL {
-	
-	private GenericDAO<Film> dao;
+	@Autowired
+	private FilmDAO dao;
 	
 	public FilmBLL() {
-		dao = new GenericDAOHibernateImpl<>(Film.class);
+		
 	}
-
+	
 	public void insert(Film film) throws FilmException {
 		verifierValeurs(film);
-		dao.insert(film);
+		dao.save(film);
 	}
 	
 	
-
+	
 	public void update(Film film) throws FilmException {
 		verifierValeurs(film);
-		dao.update(film);
+		dao.save(film);
 	}
 	
 	public void delete(int id) {
-		dao.delete(id);
+		dao.deleteById(id);
 	}
 	
 	public void deleteFilmBySalle(int idSalle) {
-		
-		String requete = "DELETE from Film p where p.id in (select p.film.id from Seance p join p.salle where p.salle.id ="+idSalle+")";
-		dao.majQuery(requete);
-		//dao.deleteFilmBySalle(idSalle);
+		//A FAIRE
+//		String requete = "DELETE from Film p where p.id in (select p.film.id from Seance p join p.salle where p.salle.id ="+idSalle+")";
+//		dao.majQuery(requete);
+		dao.deleteFilmsBySalleId(idSalle);
 	}
 	
 	private void verifierValeurs(Film film) throws FilmException {

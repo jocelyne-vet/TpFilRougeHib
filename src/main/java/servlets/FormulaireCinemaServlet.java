@@ -10,21 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import bll.CinemaBLL;
 import bll.CinemaException;
 import bll.PersonneBLL;
 import bo.cinemas.Cinema;
 import bo.personnes.Gerant;
-import bo.personnes.Personne;
 import bo.util.Adresse;
 
 /**
  * Servlet implementation class FormulaireCinemaServlet
  */
 @WebServlet("/formulaireCinema")
-public class FormulaireCinemaServlet extends HttpServlet {
+public class FormulaireCinemaServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private PersonneBLL bll;
+	@Autowired
 	private CinemaBLL bllCinema;
 //	private AdresseBLL bllAdresse;
 
@@ -32,9 +35,9 @@ public class FormulaireCinemaServlet extends HttpServlet {
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		bll = new PersonneBLL();
-		bllCinema = new CinemaBLL();
-//		bllAdresse = new AdresseBLL();
+//		bll = new PersonneBLL();
+//		bllCinema = new CinemaBLL();
+////		bllAdresse = new AdresseBLL();
 	}
 
 	/**
@@ -53,7 +56,7 @@ public class FormulaireCinemaServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String pIdCinema = request.getParameter("idCinema");
 		Cinema monCinema = null;
-		List<Personne> gerants = null;
+		List<Gerant> gerants = null;
 		if (pIdCinema != null && !pIdCinema.isBlank()) {
 			monCinema = bllCinema.selectCinemaById(Integer.valueOf(pIdCinema));
 			gerants = bll.selectGerants(monCinema.getGerant().getId());
@@ -63,13 +66,13 @@ public class FormulaireCinemaServlet extends HttpServlet {
 		if (!gerants.isEmpty()) {
 			request.setAttribute("cinema", monCinema);
 			request.setAttribute("gerants", gerants);
-			request.getRequestDispatcher("WEB-INF/formCinema.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/jsp/formCinema.jsp").forward(request, response);
 		} else {
 			String message = "Tous les gérants ont déjà un cinéma ; vous devez créer de nouveaux gérants ";
 			List<Cinema> cinemas = bllCinema.selectAll();
 			request.setAttribute("message", message);
 			request.setAttribute("cinemas", cinemas);
-			request.getRequestDispatcher("WEB-INF/listeCinemas.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/jsp/listeCinemas.jsp").forward(request, response);
 		}
 	}
 

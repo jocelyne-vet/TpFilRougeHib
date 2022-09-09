@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import bll.FilmBLL;
 import bll.FilmException;
 import bll.SeanceBLL;
@@ -29,17 +31,19 @@ import bo.util.Outils;
  * Servlet implementation class FormulaireFilmServlet
  */
 @WebServlet("/formulaireFilm")
-public class FormulaireFilmServlet extends HttpServlet {
+public class FormulaireFilmServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private SeanceBLL bll;
+	@Autowired
 	private FilmBLL bllFilm;
 
 	@Override
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		bll = new SeanceBLL();
-		bllFilm = new FilmBLL();
+//		bll = new SeanceBLL();
+//		bllFilm = new FilmBLL();
 	}
 
 	/**
@@ -82,7 +86,7 @@ public class FormulaireFilmServlet extends HttpServlet {
 			request.setAttribute("messageErreur", pMessage);
 		}
 		request.setAttribute("idSalle", pIdSalle);
-		request.getRequestDispatcher("WEB-INF/formFilm.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/formFilm.jsp").forward(request, response);
 	}
 
 	/**
@@ -208,13 +212,18 @@ public class FormulaireFilmServlet extends HttpServlet {
 					doGet(request, response);
 
 				} catch (Exception e) {
-					List<String> erreurs = new ArrayList<>();
-					erreurs.add("Une erreur est intervenue lors de la mise à jour.");
-					request.setAttribute("idSalle", pIdSalle);
-					request.setAttribute("idFilm", pIdFilm);
-					bOk = false;
-					doGet(request, response);
-				}
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+				
+//				catch (Exception e) {
+//					List<String> erreurs = new ArrayList<>();
+//					erreurs.add("Une erreur est intervenue lors de la mise à jour.");
+//					request.setAttribute("idSalle", pIdSalle);
+//					request.setAttribute("idFilm", pIdFilm);
+//					bOk = false;
+//					doGet(request, response);
+//				}
 			} else {
 				try {
 					bllFilm.insert(monFilm);

@@ -15,8 +15,8 @@
 	href="${pageContext.request.contextPath}/css/message.css">
 </head>
 <body>
-	<%@ include file="fragments/fragmentMenu.jsp"%>
-	<%@ include file="fragments/fragmentMessage.jsp" %>
+	<%@ include file="../fragments/fragmentMenu.jsp"%>
+	<%@ include file="../fragments/fragmentMessage.jsp" %>
 	<div class="content">
 
 		<div class="infoCinema">

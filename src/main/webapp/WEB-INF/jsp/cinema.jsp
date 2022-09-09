@@ -12,7 +12,7 @@
 	href="${pageContext.request.contextPath}/css/cinema.css">
 </head>
 <body>
-	<%@ include file="fragments/fragmentMenu.jsp"%>
+	<%@ include file="../fragments/fragmentMenu.jsp"%>
 
 	<c:if test="${empty cinema.nom }">
 		<p>Il n'y a pas de films associer à ce cinéma pour l'instant.</p>

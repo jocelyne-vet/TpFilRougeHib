@@ -13,7 +13,7 @@
 	href="${pageContext.request.contextPath}/css/menuclient.css">
 </head>
 <body>
-	<%@ include file="fragments/fragmentMenu.jsp"%>
+	<%@ include file="../fragments/fragmentMenu.jsp"%>
 	<div class="par">
 		<h3>Les cinémas</h3>
 		<h1>Rilletthes</h1>

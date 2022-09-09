@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import bll.FilmBLL;
 import bll.SeanceBLL;
 
@@ -14,17 +16,19 @@ import bll.SeanceBLL;
  * Servlet implementation class SupprimerFilmServlet
  */
 @WebServlet("/supprimerFilm")
-public class SupprimerFilmServlet extends HttpServlet {
+public class SupprimerFilmServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
+	@Autowired
     private FilmBLL bll;
+	@Autowired
     private SeanceBLL bllSeance;
     
     @Override
     public void init() throws ServletException {
     	// TODO Auto-generated method stub
     	super.init();
-    	bll = new FilmBLL();
-    	bllSeance = new SeanceBLL();
+//    	bll = new FilmBLL();
+//    	bllSeance = new SeanceBLL();
     	
     }
     /**

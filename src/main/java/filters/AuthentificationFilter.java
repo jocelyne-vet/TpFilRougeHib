@@ -10,10 +10,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import bll.PersonneBLL;
-import bo.personnes.Personne;
 
 /**
  * Servlet Filter implementation class AuthentificationFilter
@@ -21,6 +17,11 @@ import bo.personnes.Personne;
 @WebFilter("/reserver")
 public class AuthentificationFilter extends HttpFilter implements Filter {
 	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpFilter#HttpFilter()
@@ -62,7 +63,7 @@ public class AuthentificationFilter extends HttpFilter implements Filter {
 			// Je redirige mon utilisateur vers la page de login
 			req.getSession().setAttribute("path", path);
 			req.getSession().setAttribute("pathParam", req.getParameter("idseance"));
-			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 		}
 	}
 

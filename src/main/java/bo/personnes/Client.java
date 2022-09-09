@@ -2,17 +2,12 @@ package bo.personnes;
 
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.MapKey;
-import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 import bo.cinemas.Seance;
 import bo.util.Reservation;
@@ -20,7 +15,7 @@ import bo.util.Reservation;
 @Entity
 @DiscriminatorValue(value="Client")
 public class Client extends Personne {
-	@OneToMany(targetEntity = Reservation.class)
+	@OneToMany(targetEntity = Reservation.class,mappedBy = "client")
 	@MapKey
 	private Map<Seance, Reservation> reservations;	
 	

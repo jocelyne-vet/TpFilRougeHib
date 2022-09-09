@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import bll.CinemaBLL;
 import bll.PersonneBLL;
 import bo.cinemas.Cinema;
@@ -20,17 +22,19 @@ import bo.personnes.Personne;
  * Servlet implementation class AccueilServlet
  */
 @WebServlet("/accueil")
-public class AccueilServlet extends HttpServlet {
+public class AccueilServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private CinemaBLL bll;
+	@Autowired
 	private PersonneBLL bllPersonne;
 
 	@Override
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		bll = new CinemaBLL();
-		bllPersonne = new PersonneBLL();
+//		bll = new CinemaBLL();
+//		bllPersonne = new PersonneBLL();
 	}
 
 	/**
@@ -69,7 +73,7 @@ public class AccueilServlet extends HttpServlet {
 		
 		String message = request.getParameter("message");
 		request.setAttribute("message", message);
-		request.getRequestDispatcher("WEB-INF/accueil.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/accueil.jsp").forward(request, response);
 
 	}
 
@@ -83,7 +87,7 @@ public class AccueilServlet extends HttpServlet {
 		String critere = request.getParameter("critere");
 		List<Cinema> cinemas = bll.selectCinemasCritere(critere);
 		request.setAttribute("cinemas", cinemas);
-		request.getRequestDispatcher("WEB-INF/accueil.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 
 }

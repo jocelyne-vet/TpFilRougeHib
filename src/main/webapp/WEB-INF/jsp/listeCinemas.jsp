@@ -11,8 +11,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/message.css">
 </head>
 <body>
-	<%@ include file="fragments/fragmentMenu.jsp"%>
-	<%@ include file="fragments/fragmentMessage.jsp"%>
+	<%@ include file="../fragments/fragmentMenu.jsp"%>
+	<%@ include file="../fragments/fragmentMessage.jsp"%>
 
 	<div class="content">
 		<h1>Les cinémas</h1>

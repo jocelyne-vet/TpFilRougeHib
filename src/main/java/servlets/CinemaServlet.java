@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 
 import bll.CinemaBLL;
 
@@ -23,8 +23,9 @@ import bo.cinemas.Film;
  * Servlet implementation class CinemaServlet
  */
 @WebServlet("/cinema")
-public class CinemaServlet extends HttpServlet {
+public class CinemaServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private CinemaBLL bll;
 	
 	
@@ -32,7 +33,7 @@ public class CinemaServlet extends HttpServlet {
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		bll = new CinemaBLL();
+		//bll = new CinemaBLL();
 		
 	}
        
@@ -55,7 +56,7 @@ public class CinemaServlet extends HttpServlet {
 		
 		request.setAttribute("cinema", monCinema);
 		request.setAttribute("films", mesFilms);
-		request.getRequestDispatcher("WEB-INF/cinema.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/cinema.jsp").forward(request, response);
 		
 		
 	}
@@ -74,7 +75,7 @@ public class CinemaServlet extends HttpServlet {
 		request.setAttribute("cinema", monCinema);
 		request.setAttribute("films", mesFilms);
 		
-		request.getRequestDispatcher("WEB-INF/cinema.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/cinema.jsp").forward(request, response);
 		
 	}
 

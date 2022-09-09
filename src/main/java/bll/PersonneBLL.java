@@ -1,57 +1,68 @@
 package bll;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import bo.personnes.Client;
+import bo.personnes.Gerant;
 import bo.personnes.Personne;
-import dal.GenericDAO;
-import dal.GenericDAOHibernateImpl;
+import dal.GerantDAO;
+import dal.PersonneDAO;
 
-
+@Service
 public class PersonneBLL {
-	
-	private GenericDAO<Personne> dao;
+	@Autowired
+	private PersonneDAO dao;
+	@Autowired
+	private GerantDAO gDao;
 
 	public PersonneBLL() {
-		//daoG = new PersonneDAOJdbcImpl();
-		dao = new GenericDAOHibernateImpl<>(Personne.class);
+		
 	}
 
 	public Personne existPersonne(String email, String motDePasse) {
 		//return daoG.existPersonne(email, motDePasse);
-		Map<String,Object> critere = new HashMap<>();
-		critere.put("varEmail", email);
-		critere.put("varMotDePasse", motDePasse);
-		return  dao.selectQueryWithParam("existPersonne", critere);
-		
+//		Map<String,Object> critere = new HashMap<>();
+//		critere.put("varEmail", email);
+//		critere.put("varMotDePasse", motDePasse);
+//		return  dao.selectQueryWithParam("existPersonne", critere);
+		Personne personne = null;
+		List<Personne> personnes = dao.findByEmailAndMotdePasse(email, motDePasse);
+		if(personnes!=null) {
+			personne = personnes.get(0);
+		}
+		return personne;
 	}
 
 	public Personne selectById(int id) {
-		return dao.findById(id);
+		return dao.findById(id).get();
 	}
 	
 	
 	public void insertPersonne(Personne personne) {
-		dao.insert(personne);
+		dao.save(personne);
 	}
 	
 	public void updatePersonne(Personne personne) {
-		dao.update(personne);
+		dao.save(personne);
 	}
 	
 	public List<Personne> selectAll(){
-		return dao.findAll("findAll");
+		return dao.findAll();
 	}
 	
 	public void deletePersonne(int id) {
-		dao.delete(id);
+		dao.deleteById(id);
 	}
 	//gerant
-	public List<Personne> selectGerants(int id){
-		Map<String, Object> critere = new HashMap<>();
-		critere.put("varGerantId", id);
-		return dao.findWithParam("findGerants", critere);		
+	public List<Gerant> selectGerants(int id){
+//		Map<String, Object> critere = new HashMap<>();
+//		critere.put("varGerantId", id);
+//		return dao.findWithParam("findGerants", critere);
+		//A FAIRE
+		return gDao.selectGerants(id);
 	}
 	//reservations
 

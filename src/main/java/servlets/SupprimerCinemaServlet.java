@@ -7,21 +7,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import bll.CinemaBLL;
+import bo.cinemas.Cinema;
 
 /**
  * Servlet implementation class SupprimerCinemaServlet
  */
 @WebServlet("/supprimerCinema")
-public class SupprimerCinemaServlet extends HttpServlet {
+public class SupprimerCinemaServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private CinemaBLL bll;
 	
 	@Override
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		bll = new CinemaBLL();
+//		bll = new CinemaBLL();
 	}
        
     /**
@@ -45,7 +49,9 @@ public class SupprimerCinemaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pIdCinema = request.getParameter("idCinema");
 		String pNomCinema = request.getParameter("nomCinema");
-		bll.delete(Integer.valueOf(pIdCinema));
+		
+		Cinema cinema = bll.selectById(Integer.valueOf(pIdCinema));
+		bll.delete(cinema);
 		String message = "Vous venez de supprimer le cinéma"+pNomCinema;
 		response.sendRedirect("listeCinemas?message="+message);
 	}

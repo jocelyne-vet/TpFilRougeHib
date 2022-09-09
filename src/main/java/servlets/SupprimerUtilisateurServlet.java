@@ -1,13 +1,15 @@
 package servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bll.AdresseBLL;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import bll.PersonneBLL;
 import bo.personnes.Personne;
 
@@ -15,17 +17,19 @@ import bo.personnes.Personne;
  * Servlet implementation class SupprimerUtilisateurServlet
  */
 @WebServlet("/supprimerUtilisateur")
-public class SupprimerUtilisateurServlet extends HttpServlet {
+public class SupprimerUtilisateurServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private PersonneBLL bll;
-	private AdresseBLL bllAdresse;
+//	@Autowired
+//	private AdresseBLL bllAdresse;
 
 	@Override
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		bll = new PersonneBLL();
-		bllAdresse = new AdresseBLL();
+//		bll = new PersonneBLL();
+//		bllAdresse = new AdresseBLL();
 	}
 
 	/**

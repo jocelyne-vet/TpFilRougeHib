@@ -13,7 +13,7 @@
 </head>
 <body>
 
-	<%@ include file="fragments/fragmentMenu.jsp"%>
+	<%@ include file="../fragments/fragmentMenu.jsp"%>
 
 	<div class="content">
 		<h1>Ma réservation</h1>

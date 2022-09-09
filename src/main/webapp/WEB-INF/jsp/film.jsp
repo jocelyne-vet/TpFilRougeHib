@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/film.css">
 </head>
 <body>
-	<%@ include file="fragments/fragmentMenu.jsp"%>
+	<%@ include file="../fragments/fragmentMenu.jsp"%>
 	<div class="content">
 		<div class="film">
 			<div class="info">

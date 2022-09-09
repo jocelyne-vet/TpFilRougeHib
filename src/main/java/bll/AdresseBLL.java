@@ -1,27 +1,29 @@
 package bll;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import bo.util.Adresse;
+import dal.AdresseDAO;
 
-import dal.GenericDAO;
-import dal.GenericDAOHibernateImpl;
-
+@Service
 public class AdresseBLL {
-    private GenericDAO<Adresse> dao;
+	@Autowired
+    private AdresseDAO dao;
     
 	public AdresseBLL() {
-		dao = new GenericDAOHibernateImpl<>(Adresse.class);
 	}
 	
 	public void insert(Adresse adresse) throws AdresseException {
 		verifierValeurs(adresse);
-		 dao.insert(adresse);
+		 dao.save(adresse);
 	}
 	
 	
-
+	
 	public void update(Adresse adresse) throws AdresseException {
 		verifierValeurs(adresse);
-		dao.update(adresse);
+		dao.save(adresse);
 	}
 	
 //	public void deleteByIdPersonne(int idPersonne) {
@@ -29,7 +31,7 @@ public class AdresseBLL {
 //	}
 	
 	public void delete(int id) {
-		dao.delete(id);
+		dao.deleteById(id);
 	}
 	
 	private void verifierValeurs(Adresse adresse) throws AdresseException {

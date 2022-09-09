@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bll.PersonneBLL;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import bll.ReservationBLL;
 import bll.SeanceBLL;
 import bo.cinemas.Seance;
@@ -23,19 +24,21 @@ import bo.util.Reservation;
  * Servlet implementation class ReserverServlet
  */
 @WebServlet("/reserver")
-public class ReserverServlet extends HttpServlet {
+public class ReserverServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private SeanceBLL bll;
+	@Autowired
 	private ReservationBLL bllReservation;
-	private PersonneBLL bllPersonne;
+//	private PersonneBLL bllPersonne;
 
 	@Override
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		bll = new SeanceBLL();
-		bllReservation = new ReservationBLL();
-		bllPersonne = new PersonneBLL();
+//		bll = new SeanceBLL();
+//		bllReservation = new ReservationBLL();
+//		bllPersonne = new PersonneBLL();
 	}
 
 	/**
@@ -85,12 +88,12 @@ public class ReserverServlet extends HttpServlet {
 			}
 		}
 
-		HttpSession session = request.getSession();
+//		HttpSession session = request.getSession();
 		request.getSession().setAttribute("user", user);
 		request.setAttribute("nbdeplacesres", nb_places);
 		request.setAttribute("seance", maSeance);
 		System.out.println(user.getDateNaissance());
-		request.getRequestDispatcher("WEB-INF/reservation.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/reservation.jsp").forward(request, response);
 	}
 
 	/**
@@ -152,7 +155,7 @@ public class ReserverServlet extends HttpServlet {
 			
 			String message = "Vous venez de réserver "+ nbPlaces+ " pour le film "+maSeance.getFilm().getNom()+" à la séance de "+maSeance.getHeureDebut().toLocalDate()+ " à "+maSeance.formatHeureMinute();
 			request.setAttribute("message", message);
-			request.getRequestDispatcher("WEB-INF/accueil.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/jsp/accueil.jsp").forward(request, response);
 		}
 	}
 

@@ -9,7 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import bll.SalleBLL;
 import bll.SalleException;
@@ -20,16 +21,16 @@ import bo.cinemas.Salle;
  * Servlet implementation class FormulaireSalleServlet
  */
 @WebServlet("/formulaireSalle")
-public class FormulaireSalleServlet extends HttpServlet {
+public class FormulaireSalleServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
-
+	@Autowired
 	private SalleBLL bll;
 
 	@Override
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		bll = new SalleBLL();
+//		bll = new SalleBLL();
 	}
 
 	/**
@@ -50,14 +51,14 @@ public class FormulaireSalleServlet extends HttpServlet {
 		String pIdSalle = request.getParameter("idSalle");
 		String pAfficheCinema = request.getParameter("afficheCinema");
 		Salle maSalle = new Salle();
-		if (pIdSalle != null && !pIdSalle.isBlank()) {
+		if (pIdSalle != null && !pIdSalle.isBlank()&& !pIdSalle.equals("0")) {
 			maSalle = bll.selectById(Integer.valueOf(pIdSalle));
 		}
 		request.setAttribute("idCinema", pIdCinema);
 		request.setAttribute("salle", maSalle);
 		request.setAttribute("afficheCinema", pAfficheCinema);
 
-		request.getRequestDispatcher("WEB-INF/formSalle.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/formSalle.jsp").forward(request, response);
 	}
 
 	/**
@@ -109,7 +110,7 @@ public class FormulaireSalleServlet extends HttpServlet {
 
 				maSalle.setId(Integer.valueOf(pIdSalle));
 				try {
-					bll.existNumeroSalle(numero, Integer.valueOf(pIdCinema));
+					bll.existNumeroSalle(maSalle, numero, Integer.valueOf(pIdCinema));
 					bll.update(maSalle);
 				} catch (SalleException e) {
 					bOk =false;
@@ -119,19 +120,21 @@ public class FormulaireSalleServlet extends HttpServlet {
 					request.setAttribute("idSalle", pIdSalle);
 					request.setAttribute("afficheCinema", pAfficheCinema);
 					doGet(request, response);
-				}catch (Exception e) { // Les exceptions issues de mauvais Integer.parseInt...
-					bOk = false;
-					List<String> erreurs = new ArrayList<>();
-					erreurs.add("Une erreur est intervenue lors de la mise à jour.");
-					request.setAttribute("erreurs", erreurs);
-					request.setAttribute("idCinema", pIdCinema);
-					request.setAttribute("idSalle", pIdSalle);
-					request.setAttribute("afficheCinema", pAfficheCinema);
-					doGet(request, response);
 				}
+//				catch (Exception e) { 
+//					e.getMessage();// Les exceptions issues de mauvais Integer.parseInt...
+//					bOk = false;
+//					List<String> erreurs = new ArrayList<>();
+//					erreurs.add("Une erreur est intervenue lors de la mise à jour.");
+//					request.setAttribute("erreurs", erreurs);
+//					request.setAttribute("idCinema", pIdCinema);
+//					request.setAttribute("idSalle", pIdSalle);
+//					request.setAttribute("afficheCinema", pAfficheCinema);
+//					doGet(request, response);
+//				}
 			} else {
 				try {
-					bll.existNumeroSalle(numero, Integer.valueOf(pIdCinema));
+					bll.existNumeroSalle(maSalle, numero, Integer.valueOf(pIdCinema));
 					bll.insert(maSalle);
 					bInsert = true;
 				} catch (SalleException e) {

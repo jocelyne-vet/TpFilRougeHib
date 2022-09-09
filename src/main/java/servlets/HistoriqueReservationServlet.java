@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 
 import bll.ReservationBLL;
 
@@ -23,8 +24,9 @@ import bo.util.Reservation;
  * Servlet implementation class HistoriqueReservationServlet
  */
 @WebServlet("/historiqueReservation")
-public class HistoriqueReservationServlet extends HttpServlet {
+public class HistoriqueReservationServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private ReservationBLL bll;
 	
 	@Override
@@ -32,7 +34,7 @@ public class HistoriqueReservationServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.init();
 		
-		bll = new ReservationBLL();
+//		bll = new ReservationBLL();
 	}
        
     /**
@@ -64,7 +66,7 @@ public class HistoriqueReservationServlet extends HttpServlet {
 		
 		
 		request.setAttribute("reservations", reservations);
-		request.getRequestDispatcher("WEB-INF/historiqueReservation.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/historiqueReservation.jsp").forward(request, response);
 	}
 
 	/**

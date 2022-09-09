@@ -13,8 +13,8 @@
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/menu.js"></script> --%>
 </head>
 <body>
-	<%@ include file="fragments/fragmentMenu.jsp"%>
-	<%@ include file="fragments/fragmentMessageErreur.jsp" %>
+	<%@ include file="../fragments/fragmentMenu.jsp"%>
+	<%@ include file="../fragments/fragmentMessageErreur.jsp" %>
 	<form action="${pageContext.request.contextPath}/login" method="post">
 		<div class="content">
 			<h1>Je m'identifie</h1>

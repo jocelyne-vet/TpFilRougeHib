@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/historiqueReservation.css">
 </head>
 <body>
-	<%@ include file="fragments/fragmentMenu.jsp"%>
+	<%@ include file="../fragments/fragmentMenu.jsp"%>
 
 	<c:if test="${empty reservations }">
 		<p>Vous n'avez pas encore fait une réservation</p>

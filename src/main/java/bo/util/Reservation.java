@@ -16,19 +16,19 @@ import bo.personnes.Client;
 @Entity
 @Table(name="reservations")
 
-@NamedQueries({
-	
-	@NamedQuery(name = "findAllReservationByClient",
-			query = "select p from Reservation p  where p.client.id =:varClientId")
-	
-})
+//@NamedQueries({
+//	
+//	@NamedQuery(name = "findAllReservationByClient",
+//			query = "select p from Reservation p  where p.client.id =:varClientId")
+//	
+//})
 public class Reservation {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private int nb_places;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "id_personne")
 	private Client client;
 	@ManyToOne(fetch = FetchType.EAGER)

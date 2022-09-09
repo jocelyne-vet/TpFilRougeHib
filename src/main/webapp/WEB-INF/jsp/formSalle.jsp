@@ -13,8 +13,8 @@
   <script src="js/formSalle.js"></script>
 </head>
 <body>
-<%@ include file="fragments/fragmentMenu.jsp"%>
-<%@ include file="fragments/fragmentMessageErreur.jsp"%>
+<%@ include file="../fragments/fragmentMenu.jsp"%>
+<%@ include file="../fragments/fragmentMessageErreur.jsp"%>
 	<div class="content">
 
 		<div class="infoCinema">

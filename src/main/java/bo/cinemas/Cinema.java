@@ -15,8 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -28,16 +26,16 @@ import bo.personnes.Gerant;
 import bo.util.Adresse;
 @Entity
 @Table(name="cinemas")
-@NamedQueries({
-	@NamedQuery(name = "findCinemasByCritere",
-			query = "select p from Cinema p where UPPER(p.nom) like :varNom  or UPPER(p.adresse.ville) like :varVille"),
-	@NamedQuery(name = "findFilmsByCinemaByCritere",
-			query = "select p from Cinema p  Join fetch  p.salles sa  join fetch  sa.seances se where UPPER(se.film.nom) like :varNom  and p.id =:varId"),
-	@NamedQuery(name = "findFilmsByCinemaByIdGerant",
-			query = "select p from Cinema p where  p.gerant.id =:varId"),
-	@NamedQuery(name = "findAllCinema",
-			query = "select p from Cinema p ")
-})
+//@NamedQueries({
+//	@NamedQuery(name = "findCinemasByCritere",
+//			query = "select p from Cinema p where UPPER(p.nom) like :varNom  or UPPER(p.adresse.ville) like :varVille"),
+//	@NamedQuery(name = "findFilmsByCinemaByCritere",
+//			query = "select p from Cinema p  Join fetch  p.salles sa  join fetch  sa.seances se where UPPER(se.film.nom) like :varNom  and p.id =:varId"),
+//	@NamedQuery(name = "findFilmsByCinemaByIdGerant",
+//			query = "select p from Cinema p where  p.gerant.id =:varId"),
+//	@NamedQuery(name = "findAllCinema",
+//			query = "select p from Cinema p ")
+//})
 public class Cinema {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -51,8 +49,8 @@ public class Cinema {
 
 	private String affiche;
 	
-	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.REMOVE)
-	@JoinColumn(name="id_cinema")
+	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.REMOVE,mappedBy = "cinema")
+//	@JoinColumn(name="id_cinema")
 	@Fetch(value=FetchMode.SUBSELECT)
 	public Set<Salle> salles;
 	

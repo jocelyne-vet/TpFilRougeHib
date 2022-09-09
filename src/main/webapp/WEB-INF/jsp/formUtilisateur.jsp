@@ -11,7 +11,7 @@
 	href="${pageContext.request.contextPath}/css/menuclient.css">
 </head>
 <body>
-	<%@ include file="fragments/fragmentMenu.jsp"%>
+	<%@ include file="../fragments/fragmentMenu.jsp"%>
 	<div class="content">
 		<h1>Formulaire Utilisateur :</h1>
 		<form action="${pageContext.request.contextPath}/formulaireUtilisateur" method="post">
