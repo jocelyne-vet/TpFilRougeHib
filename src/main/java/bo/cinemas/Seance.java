@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ import bo.personnes.Client;
 import bo.util.Reservation;
 
 @Entity
-@Table(name="seances")
+@Table(name = "seances")
 //@NamedQueries({
 //	
 //	@NamedQuery(name = "findSeancesByFilm",
@@ -33,37 +34,37 @@ import bo.util.Reservation;
 //	@NamedQuery(name = "findAllSeancesBySalleByFilm",
 //			query = "select p from Salle sa Join sa.seances p Join p.film f where sa.id =:varIdSalle and f.id =:varIdFilm ")
 //})
-public class Seance implements Comparable<Seance>{
+public class Seance implements Comparable<Seance> {
 	@Transient
 	private LocalDateTime heureDebut;
 	private LocalTime heure;
 	private LocalDate date_seance;
-	@Column(name="nb_inscrits")
+	@Column(name = "nb_inscrits")
 	private int nbInscrits;
-	@ManyToOne
-	@JoinColumn(name="id_film")
+	@ManyToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "id_film")
 	private Film film;
 	@ManyToOne
-	@JoinColumn(name="id_salle")
+	@JoinColumn(name = "id_salle")
 	private Salle salle;
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Transient
 	private Map<Client, Integer> clientsInscrits;
-	
-	
+
 	public Seance() {
 		this.clientsInscrits = new HashMap<>();
 	}
-	
+
 	public Seance(LocalDateTime heureDebut) {
 		this.heureDebut = heureDebut;
 		this.clientsInscrits = new HashMap<>();
 	}
-	
+
 	public void reserver(Client client, int nbPlaces) throws Exception {
-		
+
 		if (clientsInscrits.containsKey(client)) {
 			int nouveauNombre = nbInscrits - clientsInscrits.get(client) + nbPlaces;
 			if (nouveauNombre > salle.getNombreDePlaces()) {
@@ -72,12 +73,21 @@ public class Seance implements Comparable<Seance>{
 			clientsInscrits.replace(client, nbPlaces);
 			nbInscrits = nouveauNombre;
 			Reservation res = client.getReservations().get(this);
-			res.setNb_places(nbPlaces);
-			
+			if (res != null) {
+				res.setNb_places(nbPlaces);
+			} else {
+				res = new Reservation();
+				res.setClient(client);
+				res.setSeance(this);
+				res.setNb_places(nbPlaces);
+				client.getReservations().put(this, res);
+				client.getReservations().put(this, res);
+			}
 		} else {
 			int nouveauNombre = nbInscrits + nbPlaces;
 			if (nouveauNombre > salle.getNombreDePlaces()) {
-				throw new Exception("Le nombre de places disponibles est inférieur au nombre de places que vous avez demandées");
+				throw new Exception(
+						"Le nombre de places disponibles est inférieur au nombre de places que vous avez demandées");
 			}
 			clientsInscrits.put(client, nbPlaces);
 			nbInscrits = nouveauNombre;
@@ -86,19 +96,17 @@ public class Seance implements Comparable<Seance>{
 			res.setSeance(this);
 			res.setNb_places(nbPlaces);
 			client.getReservations().put(this, res);
-			
+
 		}
-		
-		
-		
+
 	}
-	
-    public String formatHeureMinute() {
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-    	
-    	System.out.println(this.heureDebut.format(formatter));
-    	return this.heureDebut.format(formatter);
-    }
+
+	public String formatHeureMinute() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+
+		System.out.println(this.heureDebut.format(formatter));
+		return this.heureDebut.format(formatter);
+	}
 
 	@Override
 	public int hashCode() {
@@ -118,33 +126,32 @@ public class Seance implements Comparable<Seance>{
 	}
 
 	public Date getHeureDebutDate() {
-		
+
 		Instant instant = this.heureDebut.atZone(ZoneId.systemDefault()).toInstant();
 		Date date = Date.from(instant);
-		System.out.println(date); 
+		System.out.println(date);
 		return date;
-		
+
 	}
-	
+
 	@Override
 	public int compareTo(Seance o) {
 		// TODO Auto-generated method stub
 		return this.getHeureDebut().compareTo(o.getHeureDebut());
 	}
 
-
 	public LocalDateTime getHeureDebut() {
-		if(this.heureDebut == null) {
+		if (this.heureDebut == null) {
 			this.heureDebut = LocalDateTime.of(date_seance, heure);
 		}
 		return heureDebut;
-		
+
 	}
 
 	public void setHeureDebut(LocalDateTime heureDebut) {
 		this.heureDebut = heureDebut;
 		this.date_seance = heureDebut.toLocalDate();
-		this.heure =heureDebut.toLocalTime();
+		this.heure = heureDebut.toLocalTime();
 	}
 
 	public int getNbInscrits() {
@@ -154,15 +161,15 @@ public class Seance implements Comparable<Seance>{
 	public void setNbInscrits(int nbInscrits) {
 		this.nbInscrits = nbInscrits;
 	}
-	
+
 	public Film getFilm() {
 		return film;
 	}
-	
+
 	public void setFilm(Film film) {
 		this.film = film;
 	}
-	
+
 	public Salle getSalle() {
 		return salle;
 	}
@@ -187,10 +194,4 @@ public class Seance implements Comparable<Seance>{
 		this.id = id;
 	}
 
-	
-
-
-
-	
-	
 }

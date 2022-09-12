@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +21,11 @@ public class SupprimerCinemaServlet extends AncetreServlet {
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private CinemaBLL bll;
+//	@Autowired
+//	private SeanceBLL bllSeance;
+//	
+//	@Autowired
+//	private FilmBLL bllFilm;
 	
 	@Override
 	public void init() throws ServletException {
@@ -49,6 +55,12 @@ public class SupprimerCinemaServlet extends AncetreServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pIdCinema = request.getParameter("idCinema");
 		String pNomCinema = request.getParameter("nomCinema");
+		
+		//suppression des seances et du films
+		
+//		bllFilm.deleteFilmByCinema(Integer.valueOf(pIdCinema));
+//		bllSeance.deleteSeanceByCinema(Integer.valueOf(pIdCinema));
+		
 		
 		Cinema cinema = bll.selectById(Integer.valueOf(pIdCinema));
 		bll.delete(cinema);

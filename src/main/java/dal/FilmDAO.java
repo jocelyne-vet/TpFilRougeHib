@@ -14,6 +14,10 @@ public interface FilmDAO extends JpaRepository<Film, Integer>{
 	@Modifying
 	@Transactional
 	void deleteFilmsBySalleId(int salleId);
+	@Query("DELETE from Film f where f.id in (select p.film.id from Seance p join p.salle se where se.cinema.id =?1)")
+	@Modifying
+	@Transactional
+	void deletefilmByCinema(Integer idCinema);
 	
 
 }

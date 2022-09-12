@@ -57,23 +57,22 @@ public class ReserverServlet extends AncetreServlet {
 			throws ServletException, IOException {
 		String pMessageErreur = request.getParameter("messageErreur");
 		String pIdSeance = request.getParameter("idseance");
-		if(pIdSeance==null) {
-			pIdSeance = (String)request.getSession().getAttribute("pathParam");
+		if (pIdSeance == null) {
+			pIdSeance = (String) request.getSession().getAttribute("pathParam");
 		}
 		Seance maSeance = bll.selectById(Integer.valueOf(pIdSeance));
 
 		Client user = (Client) request.getSession().getAttribute("user");
 //		bllPersonne.selectMesReservations(user);
-		
+
 		List<Reservation> resultats = bllReservation.findAllReservation(user.getId());
-		
-		Map<Seance,Reservation> reservClient = new HashMap<>();
-		for(Reservation res: resultats) {
+
+		Map<Seance, Reservation> reservClient = new HashMap<>();
+		for (Reservation res : resultats) {
 			reservClient.put(res.getSeance(), res);
 		}
-		
+
 		user.setReservations(reservClient);
-		
 
 		if (pMessageErreur != null) {
 			request.setAttribute("messageErreur", pMessageErreur);
@@ -105,14 +104,26 @@ public class ReserverServlet extends AncetreServlet {
 		String pNbPlacesRes = request.getParameter("nbdeplacesres");
 		String pIdSeance = request.getParameter("idseance");
 		Client user = (Client) request.getSession().getAttribute("user");
+//	    ajouter
+
+		List<Reservation> resultats = bllReservation.findAllReservation(user.getId());
+
+		Map<Seance, Reservation> reservClient = new HashMap<>();
+		for (Reservation res : resultats) {
+			reservClient.put(res.getSeance(), res);
+		}
+
+		user.setReservations(reservClient);
+//
+
 		String messageError = null;
 		Seance maSeance = null;
 		int nbPlaces = Integer.valueOf(pNbPlacesRes);
 		if (pNbPlacesRes != null) {
 
 			maSeance = bll.selectById(Integer.valueOf(pIdSeance));
-			Map<Client,Integer> clientInstcrits = new HashMap<>();
-			clientInstcrits.put(user,maSeance.getNbInscrits() );
+			Map<Client, Integer> clientInstcrits = new HashMap<>();
+			clientInstcrits.put(user, maSeance.getNbInscrits());
 			maSeance.setClientsInscrits(clientInstcrits);
 			try {
 				maSeance.reserver(user, nbPlaces);
@@ -131,7 +142,7 @@ public class ReserverServlet extends AncetreServlet {
 			Map<Seance, Reservation> reserv = user.getReservations();
 
 			// enregistremnet du nb d'inscrits dans la séance
-			//bll.updateSeance(Integer.valueOf(pIdSeance), maSeance.getNbInscrits());
+			// bll.updateSeance(Integer.valueOf(pIdSeance), maSeance.getNbInscrits());
 			try {
 				bll.update(maSeance);
 			} catch (Exception e) {
@@ -142,18 +153,20 @@ public class ReserverServlet extends AncetreServlet {
 
 			for (Seance seance : reserv.keySet()) {
 				if (seance.equals(maSeance)) {
-					//bllPersonne.majReservation(seance.getId(), user.getId(), reserv.get(seance));
+					// bllPersonne.majReservation(seance.getId(), user.getId(), reserv.get(seance));
 					Reservation res = reserv.get(maSeance);
-					//il manque id reservation  
-					if(res.getId()>0) {
-					bllReservation.update(res);
-					}else {
+					// il manque id reservation
+					if (res.getId() > 0) {
+						bllReservation.update(res);
+					} else {
 						bllReservation.insert(res);
 					}
 				}
 			}
-			
-			String message = "Vous venez de réserver "+ nbPlaces+ " pour le film "+maSeance.getFilm().getNom()+" à la séance de "+maSeance.getHeureDebut().toLocalDate()+ " à "+maSeance.formatHeureMinute();
+
+			String message = "Vous venez de réserver " + nbPlaces + " pour le film " + maSeance.getFilm().getNom()
+					+ " à la séance de " + maSeance.getHeureDebut().toLocalDate() + " à "
+					+ maSeance.formatHeureMinute();
 			request.setAttribute("message", message);
 			request.getRequestDispatcher("WEB-INF/jsp/accueil.jsp").forward(request, response);
 		}

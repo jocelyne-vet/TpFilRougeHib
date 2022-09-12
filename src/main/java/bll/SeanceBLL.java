@@ -91,4 +91,9 @@ public class SeanceBLL {
 		}
 		
 	}
+
+//	public void deleteSeanceByCinema(int idCinema) {
+//		dao.deleteSeanceByCinema(idCinema);
+//		
+//	}
 }

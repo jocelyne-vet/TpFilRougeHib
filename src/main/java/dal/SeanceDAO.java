@@ -22,4 +22,8 @@ public interface SeanceDAO extends JpaRepository<Seance, Integer>{
 	void deleteBySalleId(int id);
 	List<Seance> findBySalleIdAndFilmId(int salleId,int filmId);
 	List<Seance> findByFilmId(int id);
+//	@Query("DELETE from Seance s join s.salle sa where sa.cinema.id=?1")
+//	@Modifying
+//	@Transactional
+//	void deleteSeanceByCinema(int idCinema);
 }

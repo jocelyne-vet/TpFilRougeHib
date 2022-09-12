@@ -57,5 +57,10 @@ public class FilmBLL {
 			throw exception;
 		}
 	}
+
+	public void deleteFilmByCinema(Integer idCinema) {
+		dao.deletefilmByCinema(idCinema);
+		
+	}
 	
 }
